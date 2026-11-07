@@ -1,0 +1,84 @@
+{
+  "revision": "0.4",
+  "parts": {
+    "RocketBody": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 129448.963,
+      "pla_mass_g_estimate": 160.5,
+      "bounds_mm": [
+        112.851,
+        107.0,
+        150.0
+      ]
+    },
+    "NoseCone": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 23888.186,
+      "pla_mass_g_estimate": 29.6,
+      "bounds_mm": [
+        80.0,
+        80.0,
+        63.0
+      ]
+    },
+    "RearCover": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 19476.826,
+      "pla_mass_g_estimate": 24.2,
+      "bounds_mm": [
+        56.0,
+        5.2,
+        114.0
+      ]
+    },
+    "PiCarrier": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 6054.588,
+      "pla_mass_g_estimate": 7.5,
+      "bounds_mm": [
+        37.0,
+        8.0,
+        72.0
+      ]
+    },
+    "LCDRetainerLower": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 1251.525,
+      "pla_mass_g_estimate": 1.6,
+      "bounds_mm": [
+        70.0,
+        11.0,
+        5.0
+      ]
+    },
+    "LCDRetainerUpper": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 1251.525,
+      "pla_mass_g_estimate": 1.6,
+      "bounds_mm": [
+        70.0,
+        11.0,
+        5.0
+      ]
+    }
+  },
+  "printed_part_intersections_mm3": {},
+  "lcd_reference_check": {
+    "source": "Waveshare SKU16446 official STEP (not redistributed)",
+    "transform": "x=vendor_x-25.424; y=vendor_z-34; z=vendor_y+54.5",
+    "intersections_mm3": {
+      "RocketBody": 0.0,
+      "NoseCone": 0.0,
+      "RearCover": 0.0,
+      "PiCarrier": 0.0,
+      "LCDRetainerLower": 0.0,
+      "LCDRetainerUpper": 0.0
+    }
+  }
+}

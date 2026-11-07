@@ -1,0 +1,10 @@
+{
+  "body_radius": 40,
+  "body_height": 150,
+  "nose_height": 55,
+  "wall": 2.4,
+  "screen_window_width": 44.2,
+  "screen_window_height": 58.6,
+  "screen_bottom": 64,
+  "screen_status": "Selected Waveshare SKU16446 2.8-inch; portrait active area 43.2 x 57.6 mm; PCB 50.8 x 79.9 mm. Verify actual active-area offset and glass depth before printing."
+}

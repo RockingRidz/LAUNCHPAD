@@ -1,0 +1,14 @@
+[Unit]
+Description=LAUNCHPAD mission-control server
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=pi
+WorkingDirectory=/home/pi/LAUNCHPAD
+ExecStart=/home/pi/LAUNCHPAD/.venv/bin/python /home/pi/LAUNCHPAD/firmware/server.py
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,7 @@
+{
+  "latitude": null,
+  "longitude": null,
+  "alert_seconds": 120,
+  "quiet_hours": [22, 7],
+  "buzzer_enabled": false
+}

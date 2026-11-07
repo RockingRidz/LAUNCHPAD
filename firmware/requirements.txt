@@ -1,0 +1,4 @@
+skyfield>=1.49,<2
+Pillow>=10,<13
+spidev>=3.6,<4; sys_platform == 'linux'
+gpiozero>=2,<3; sys_platform == 'linux'

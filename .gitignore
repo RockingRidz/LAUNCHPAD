@@ -1,0 +1,13 @@
+__pycache__/
+.venv/
+*.pyc
+config.json
+firmware/config.json
+firmware/cache/
+firmware/touch-calibration.json
+*.kicad_prl
+*.lck
+*.FCStd1
+*.FCBak
+work/
+.DS_Store

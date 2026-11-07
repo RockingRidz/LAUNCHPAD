@@ -1,0 +1,535 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<export version="E">
+  <design>
+    <source>C:\Users\Ridith\Documents\Codex\2026-11-07\launchpad\outputs\LAUNCHPAD\pcb\LAUNCHPAD.kicad_sch</source>
+    <date>2026-11-07T17:06:09</date>
+    <tool>Eeschema 10.0.6</tool>
+    <sheet number="1" name="/" tstamps="/">
+      <title_block>
+        <title>LAUNCHPAD - Display and Alert Circuit</title>
+        <company/>
+        <rev>0.4</rev>
+        <date>2026-11-07</date>
+        <source>LAUNCHPAD.kicad_sch</source>
+        <comment number="1" value=""/>
+        <comment number="2" value=""/>
+        <comment number="3" value=""/>
+        <comment number="4" value=""/>
+        <comment number="5" value=""/>
+        <comment number="6" value=""/>
+        <comment number="7" value=""/>
+        <comment number="8" value=""/>
+        <comment number="9" value=""/>
+      </title_block>
+    </sheet>
+  </design>
+  <components>
+    <comp ref="BZ1">
+      <value>5V active &lt;=20mA</value>
+      <fields>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Device" part="Buzzer" description="Buzzer, polarized"/>
+      <property name="Sheetname" value="LAUNCHPAD"/>
+      <property name="Sheetfile" value="LAUNCHPAD.kicad_sch"/>
+      <property name="ki_keywords" value="quartz resonator ceramic"/>
+      <property name="ki_fp_filters" value="*Buzzer*"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>8e9679c0-fd34-4051-8e8e-e7b1a2bad05e</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="D1">
+      <value>1N4148</value>
+      <fields>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Device" part="D" description="Diode"/>
+      <property name="Sheetname" value="LAUNCHPAD"/>
+      <property name="Sheetfile" value="LAUNCHPAD.kicad_sch"/>
+      <property name="ki_keywords" value="diode"/>
+      <property name="ki_fp_filters" value="TO-???* *_Diode_* *SingleDiode* D_*"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>f133aeb1-6bf0-4149-bd28-3db0a65562e5</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="J1">
+      <value>Raspberry Pi Zero 2 W / GPIO</value>
+      <fields>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="LAUNCHPAD" part="PiZero2W" description=""/>
+      <property name="Sheetname" value="LAUNCHPAD"/>
+      <property name="Sheetfile" value="LAUNCHPAD.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>40df66e2-b4a8-4e53-b2a0-14181e73fc4b</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="3"/>
+            <pin num="5"/>
+            <pin num="7"/>
+            <pin num="8"/>
+            <pin num="10"/>
+            <pin num="14"/>
+            <pin num="15"/>
+            <pin num="16"/>
+            <pin num="17"/>
+            <pin num="20"/>
+            <pin num="25"/>
+            <pin num="27"/>
+            <pin num="28"/>
+            <pin num="29"/>
+            <pin num="30"/>
+            <pin num="31"/>
+            <pin num="32"/>
+            <pin num="33"/>
+            <pin num="34"/>
+            <pin num="35"/>
+            <pin num="36"/>
+            <pin num="37"/>
+            <pin num="38"/>
+            <pin num="39"/>
+            <pin num="40"/>
+            <pin num="2"/>
+            <pin num="6"/>
+            <pin num="21"/>
+            <pin num="19"/>
+            <pin num="23"/>
+            <pin num="24"/>
+            <pin num="22"/>
+            <pin num="13"/>
+            <pin num="12"/>
+            <pin num="26"/>
+            <pin num="18"/>
+            <pin num="11"/>
+            <pin num="4"/>
+            <pin num="9"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="LCD1">
+      <value>Waveshare SKU16446 / ST7789</value>
+      <fields>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="LAUNCHPAD" part="Waveshare16446" description=""/>
+      <property name="Sheetname" value="LAUNCHPAD"/>
+      <property name="Sheetfile" value="LAUNCHPAD.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>c79b60d8-0285-4c87-913a-524dc99e5e44</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+            <pin num="3"/>
+            <pin num="4"/>
+            <pin num="5"/>
+            <pin num="6"/>
+            <pin num="7"/>
+            <pin num="8"/>
+            <pin num="9"/>
+            <pin num="10"/>
+            <pin num="11"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="Q1">
+      <value>2N3904</value>
+      <fields>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Transistor_BJT" part="Q_NPN_EBC" description="NPN transistor, emitter/base/collector"/>
+      <property name="Sheetname" value="LAUNCHPAD"/>
+      <property name="Sheetfile" value="LAUNCHPAD.kicad_sch"/>
+      <property name="ki_keywords" value="BJT"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>125b8fa0-c59c-435a-b7c9-20ca1916e41b</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="2"/>
+            <pin num="3"/>
+            <pin num="1"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R1">
+      <value>1k</value>
+      <fields>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Sheetname" value="LAUNCHPAD"/>
+      <property name="Sheetfile" value="LAUNCHPAD.kicad_sch"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <property name="ki_fp_filters" value="R_*"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>cb51dddf-a3c3-400d-b5af-f54861d01235</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R2">
+      <value>100k</value>
+      <fields>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Sheetname" value="LAUNCHPAD"/>
+      <property name="Sheetfile" value="LAUNCHPAD.kicad_sch"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <property name="ki_fp_filters" value="R_*"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>b308aae3-6c5a-46a9-a0a0-6bf474c7d2dc</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+  </components>
+  <libparts>
+    <libpart lib="Device" part="Buzzer">
+      <description>Buzzer, polarized</description>
+      <footprints>
+        <fp>*Buzzer*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">BZ</field>
+        <field name="Value">Buzzer</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description">Buzzer, polarized</field>
+      </fields>
+      <pins>
+        <pin num="1" name="+" type="passive"/>
+        <pin num="2" name="-" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Device" part="D">
+      <description>Diode</description>
+      <footprints>
+        <fp>TO-???*</fp>
+        <fp>*_Diode_*</fp>
+        <fp>*SingleDiode*</fp>
+        <fp>D_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">D</field>
+        <field name="Value">D</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description">Diode</field>
+        <field name="Sim.Device">D</field>
+        <field name="Sim.Pins">1=K 2=A</field>
+      </fields>
+      <pins>
+        <pin num="1" name="K" type="passive"/>
+        <pin num="2" name="A" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Device" part="R">
+      <description>Resistor</description>
+      <footprints>
+        <fp>R_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">R</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description">Resistor</field>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="passive"/>
+        <pin num="2" name="" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="LAUNCHPAD" part="PiZero2W">
+      <fields>
+        <field name="Reference"/>
+        <field name="Value"/>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="3V3" type="passive"/>
+        <pin num="2" name="5V" type="passive"/>
+        <pin num="3" name="GPIO2" type="passive"/>
+        <pin num="4" name="5V" type="passive"/>
+        <pin num="5" name="GPIO3" type="passive"/>
+        <pin num="6" name="GND" type="passive"/>
+        <pin num="7" name="GPIO4" type="passive"/>
+        <pin num="8" name="GPIO14" type="passive"/>
+        <pin num="9" name="GND" type="passive"/>
+        <pin num="10" name="GPIO15" type="passive"/>
+        <pin num="11" name="GPIO17_/_BUZZER" type="passive"/>
+        <pin num="12" name="GPIO18_/_BACKLIGHT" type="passive"/>
+        <pin num="13" name="GPIO27_/_RESET" type="passive"/>
+        <pin num="14" name="GND" type="passive"/>
+        <pin num="15" name="GPIO22" type="passive"/>
+        <pin num="16" name="GPIO23" type="passive"/>
+        <pin num="17" name="3V3" type="passive"/>
+        <pin num="18" name="GPIO24_/_TOUCH_IRQ" type="passive"/>
+        <pin num="19" name="GPIO10_/_MOSI" type="passive"/>
+        <pin num="20" name="GND" type="passive"/>
+        <pin num="21" name="GPIO9_/_MISO" type="passive"/>
+        <pin num="22" name="GPIO25_/_DC" type="passive"/>
+        <pin num="23" name="GPIO11_/_SCLK" type="passive"/>
+        <pin num="24" name="GPIO8_/_CE0" type="passive"/>
+        <pin num="25" name="GND" type="passive"/>
+        <pin num="26" name="GPIO7_/_CE1" type="passive"/>
+        <pin num="27" name="ID_SD" type="passive"/>
+        <pin num="28" name="ID_SC" type="passive"/>
+        <pin num="29" name="GPIO5" type="passive"/>
+        <pin num="30" name="GND" type="passive"/>
+        <pin num="31" name="GPIO6" type="passive"/>
+        <pin num="32" name="GPIO12" type="passive"/>
+        <pin num="33" name="GPIO13" type="passive"/>
+        <pin num="34" name="GND" type="passive"/>
+        <pin num="35" name="GPIO19" type="passive"/>
+        <pin num="36" name="GPIO16" type="passive"/>
+        <pin num="37" name="GPIO26" type="passive"/>
+        <pin num="38" name="GPIO20" type="passive"/>
+        <pin num="39" name="GND" type="passive"/>
+        <pin num="40" name="GPIO21" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="LAUNCHPAD" part="Waveshare16446">
+      <fields>
+        <field name="Reference"/>
+        <field name="Value"/>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="5V" type="passive"/>
+        <pin num="2" name="GND" type="passive"/>
+        <pin num="3" name="MISO" type="passive"/>
+        <pin num="4" name="MOSI" type="passive"/>
+        <pin num="5" name="SCLK" type="passive"/>
+        <pin num="6" name="LCD_CS" type="passive"/>
+        <pin num="7" name="LCD_DC" type="passive"/>
+        <pin num="8" name="LCD_RST" type="passive"/>
+        <pin num="9" name="LCD_BL" type="passive"/>
+        <pin num="10" name="TP_CS" type="passive"/>
+        <pin num="11" name="TP_IRQ" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Transistor_BJT" part="Q_NPN_EBC">
+      <description>NPN transistor, emitter/base/collector</description>
+      <fields>
+        <field name="Reference">Q</field>
+        <field name="Value">Q_NPN_EBC</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description">NPN transistor, emitter/base/collector</field>
+        <field name="Sim.Device">NPN</field>
+        <field name="Sim.Pins">1=E 2=B 3=C</field>
+      </fields>
+      <pins>
+        <pin num="1" name="E" type="passive"/>
+        <pin num="2" name="B" type="input"/>
+        <pin num="3" name="C" type="passive"/>
+      </pins>
+    </libpart>
+  </libparts>
+  <libraries>
+    <library logical="Device">
+      <uri>${KICAD10_SYMBOL_DIR}/Device.kicad_sym</uri>
+    </library>
+    <library logical="LAUNCHPAD">
+      <uri>${KIPRJMOD}/LAUNCHPAD.kicad_sym</uri>
+    </library>
+    <library logical="Transistor_BJT">
+      <uri>${KICAD10_SYMBOL_DIR}/Transistor_BJT.kicad_sym</uri>
+    </library>
+  </libraries>
+  <nets>
+    <net code="1" name="/5V" class="Default">
+      <node ref="BZ1" pin="1" pinfunction="+_1" pintype="passive"/>
+      <node ref="D1" pin="1" pinfunction="K_1" pintype="passive"/>
+      <node ref="J1" pin="2" pinfunction="5V_2" pintype="passive"/>
+      <node ref="J1" pin="4" pinfunction="5V_4" pintype="passive"/>
+      <node ref="LCD1" pin="1" pinfunction="5V_1" pintype="passive"/>
+    </net>
+    <net code="2" name="/BUZZ_BASE" class="Default">
+      <node ref="Q1" pin="2" pinfunction="B_2" pintype="input"/>
+      <node ref="R1" pin="2" pintype="passive"/>
+      <node ref="R2" pin="1" pintype="passive"/>
+    </net>
+    <net code="3" name="/BUZZ_LOW" class="Default">
+      <node ref="BZ1" pin="2" pinfunction="-_2" pintype="passive"/>
+      <node ref="D1" pin="2" pinfunction="A_2" pintype="passive"/>
+      <node ref="Q1" pin="3" pinfunction="C_3" pintype="passive"/>
+    </net>
+    <net code="4" name="/GND" class="Default">
+      <node ref="J1" pin="6" pinfunction="GND_6" pintype="passive"/>
+      <node ref="J1" pin="9" pinfunction="GND_9" pintype="passive"/>
+      <node ref="LCD1" pin="2" pinfunction="GND_2" pintype="passive"/>
+      <node ref="Q1" pin="1" pinfunction="E_1" pintype="passive"/>
+      <node ref="R2" pin="2" pintype="passive"/>
+    </net>
+    <net code="5" name="/GPIO17_BUZZER_CTRL" class="Default">
+      <node ref="J1" pin="11" pinfunction="GPIO17_/_BUZZER_11" pintype="passive"/>
+      <node ref="R1" pin="1" pintype="passive"/>
+    </net>
+    <net code="6" name="/GPIO18" class="Default">
+      <node ref="J1" pin="12" pinfunction="GPIO18_/_BACKLIGHT_12" pintype="passive"/>
+      <node ref="LCD1" pin="9" pinfunction="LCD_BL_9" pintype="passive"/>
+    </net>
+    <net code="7" name="/GPIO24" class="Default">
+      <node ref="J1" pin="18" pinfunction="GPIO24_/_TOUCH_IRQ_18" pintype="passive"/>
+      <node ref="LCD1" pin="11" pinfunction="TP_IRQ_11" pintype="passive"/>
+    </net>
+    <net code="8" name="/GPIO25" class="Default">
+      <node ref="J1" pin="22" pinfunction="GPIO25_/_DC_22" pintype="passive"/>
+      <node ref="LCD1" pin="7" pinfunction="LCD_DC_7" pintype="passive"/>
+    </net>
+    <net code="9" name="/GPIO27" class="Default">
+      <node ref="J1" pin="13" pinfunction="GPIO27_/_RESET_13" pintype="passive"/>
+      <node ref="LCD1" pin="8" pinfunction="LCD_RST_8" pintype="passive"/>
+    </net>
+    <net code="10" name="/SPI0_CE0" class="Default">
+      <node ref="J1" pin="24" pinfunction="GPIO8_/_CE0_24" pintype="passive"/>
+      <node ref="LCD1" pin="6" pinfunction="LCD_CS_6" pintype="passive"/>
+    </net>
+    <net code="11" name="/SPI0_CE1" class="Default">
+      <node ref="J1" pin="26" pinfunction="GPIO7_/_CE1_26" pintype="passive"/>
+      <node ref="LCD1" pin="10" pinfunction="TP_CS_10" pintype="passive"/>
+    </net>
+    <net code="12" name="/SPI0_MISO" class="Default">
+      <node ref="J1" pin="21" pinfunction="GPIO9_/_MISO_21" pintype="passive"/>
+      <node ref="LCD1" pin="3" pinfunction="MISO_3" pintype="passive"/>
+    </net>
+    <net code="13" name="/SPI0_MOSI" class="Default">
+      <node ref="J1" pin="19" pinfunction="GPIO10_/_MOSI_19" pintype="passive"/>
+      <node ref="LCD1" pin="4" pinfunction="MOSI_4" pintype="passive"/>
+    </net>
+    <net code="14" name="/SPI0_SCLK" class="Default">
+      <node ref="J1" pin="23" pinfunction="GPIO11_/_SCLK_23" pintype="passive"/>
+      <node ref="LCD1" pin="5" pinfunction="SCLK_5" pintype="passive"/>
+    </net>
+    <net code="15" name="unconnected-(J1-3V3-Pad1)" class="Default">
+      <node ref="J1" pin="1" pinfunction="3V3_1" pintype="passive+no_connect"/>
+    </net>
+    <net code="16" name="unconnected-(J1-3V3-Pad17)" class="Default">
+      <node ref="J1" pin="17" pinfunction="3V3_17" pintype="passive+no_connect"/>
+    </net>
+    <net code="17" name="unconnected-(J1-GND-Pad14)" class="Default">
+      <node ref="J1" pin="14" pinfunction="GND_14" pintype="passive+no_connect"/>
+    </net>
+    <net code="18" name="unconnected-(J1-GND-Pad20)" class="Default">
+      <node ref="J1" pin="20" pinfunction="GND_20" pintype="passive+no_connect"/>
+    </net>
+    <net code="19" name="unconnected-(J1-GND-Pad25)" class="Default">
+      <node ref="J1" pin="25" pinfunction="GND_25" pintype="passive+no_connect"/>
+    </net>
+    <net code="20" name="unconnected-(J1-GND-Pad30)" class="Default">
+      <node ref="J1" pin="30" pinfunction="GND_30" pintype="passive+no_connect"/>
+    </net>
+    <net code="21" name="unconnected-(J1-GND-Pad34)" class="Default">
+      <node ref="J1" pin="34" pinfunction="GND_34" pintype="passive+no_connect"/>
+    </net>
+    <net code="22" name="unconnected-(J1-GND-Pad39)" class="Default">
+      <node ref="J1" pin="39" pinfunction="GND_39" pintype="passive+no_connect"/>
+    </net>
+    <net code="23" name="unconnected-(J1-GPIO2-Pad3)" class="Default">
+      <node ref="J1" pin="3" pinfunction="GPIO2_3" pintype="passive+no_connect"/>
+    </net>
+    <net code="24" name="unconnected-(J1-GPIO3-Pad5)" class="Default">
+      <node ref="J1" pin="5" pinfunction="GPIO3_5" pintype="passive+no_connect"/>
+    </net>
+    <net code="25" name="unconnected-(J1-GPIO4-Pad7)" class="Default">
+      <node ref="J1" pin="7" pinfunction="GPIO4_7" pintype="passive+no_connect"/>
+    </net>
+    <net code="26" name="unconnected-(J1-GPIO5-Pad29)" class="Default">
+      <node ref="J1" pin="29" pinfunction="GPIO5_29" pintype="passive+no_connect"/>
+    </net>
+    <net code="27" name="unconnected-(J1-GPIO6-Pad31)" class="Default">
+      <node ref="J1" pin="31" pinfunction="GPIO6_31" pintype="passive+no_connect"/>
+    </net>
+    <net code="28" name="unconnected-(J1-GPIO12-Pad32)" class="Default">
+      <node ref="J1" pin="32" pinfunction="GPIO12_32" pintype="passive+no_connect"/>
+    </net>
+    <net code="29" name="unconnected-(J1-GPIO13-Pad33)" class="Default">
+      <node ref="J1" pin="33" pinfunction="GPIO13_33" pintype="passive+no_connect"/>
+    </net>
+    <net code="30" name="unconnected-(J1-GPIO14-Pad8)" class="Default">
+      <node ref="J1" pin="8" pinfunction="GPIO14_8" pintype="passive+no_connect"/>
+    </net>
+    <net code="31" name="unconnected-(J1-GPIO15-Pad10)" class="Default">
+      <node ref="J1" pin="10" pinfunction="GPIO15_10" pintype="passive+no_connect"/>
+    </net>
+    <net code="32" name="unconnected-(J1-GPIO16-Pad36)" class="Default">
+      <node ref="J1" pin="36" pinfunction="GPIO16_36" pintype="passive+no_connect"/>
+    </net>
+    <net code="33" name="unconnected-(J1-GPIO19-Pad35)" class="Default">
+      <node ref="J1" pin="35" pinfunction="GPIO19_35" pintype="passive+no_connect"/>
+    </net>
+    <net code="34" name="unconnected-(J1-GPIO20-Pad38)" class="Default">
+      <node ref="J1" pin="38" pinfunction="GPIO20_38" pintype="passive+no_connect"/>
+    </net>
+    <net code="35" name="unconnected-(J1-GPIO21-Pad40)" class="Default">
+      <node ref="J1" pin="40" pinfunction="GPIO21_40" pintype="passive+no_connect"/>
+    </net>
+    <net code="36" name="unconnected-(J1-GPIO22-Pad15)" class="Default">
+      <node ref="J1" pin="15" pinfunction="GPIO22_15" pintype="passive+no_connect"/>
+    </net>
+    <net code="37" name="unconnected-(J1-GPIO23-Pad16)" class="Default">
+      <node ref="J1" pin="16" pinfunction="GPIO23_16" pintype="passive+no_connect"/>
+    </net>
+    <net code="38" name="unconnected-(J1-GPIO26-Pad37)" class="Default">
+      <node ref="J1" pin="37" pinfunction="GPIO26_37" pintype="passive+no_connect"/>
+    </net>
+    <net code="39" name="unconnected-(J1-ID_SC-Pad28)" class="Default">
+      <node ref="J1" pin="28" pinfunction="ID_SC_28" pintype="passive+no_connect"/>
+    </net>
+    <net code="40" name="unconnected-(J1-ID_SD-Pad27)" class="Default">
+      <node ref="J1" pin="27" pinfunction="ID_SD_27" pintype="passive+no_connect"/>
+    </net>
+  </nets>
+</export>

@@ -1,0 +1,28 @@
+"""Open in FreeCAD's macro editor and press F6 to view, colour and render the assembly."""
+from pathlib import Path
+import FreeCAD as App
+import FreeCADGui as Gui
+folder=Path(__file__).resolve().parent
+path=folder/'LAUNCHPAD.FCStd'
+doc=next((d for d in App.listDocuments().values() if d.FileName==str(path)),None)
+if doc is None:doc=App.openDocument(str(path))
+App.setActiveDocument(doc.Name)
+for obj in doc.Objects:
+    if hasattr(obj,'ColorRGB') and obj.ViewObject:
+        obj.ViewObject.ShapeColor=tuple(float(x) for x in obj.ColorRGB.split(','))
+        obj.ViewObject.LineColor=(.12,.16,.20)
+        obj.ViewObject.DisplayMode='Flat Lines'
+Gui.activeDocument().activeView().setCameraOrientation(App.Rotation(App.Vector(1,0,0),App.Vector(0,0,1),App.Vector(.55,-1,.45),'ZXY').Q)
+Gui.activeDocument().activeView().fitAll()
+Gui.activeDocument().activeView().saveImage(str(folder.parent/'images'/'cad-assembled.png'),1600,1200,'White')
+doc.recompute();doc.save()
+# Explode only the service parts; leave the user's saved file assembled.
+offsets={'NoseCone':App.Vector(0,0,45),'RearCover':App.Vector(85,30,0),'PiCarrier':App.Vector(70,25,0),'PiZero2W_Reference':App.Vector(70,25,0),'LCDRetainerLower':App.Vector(-55,0,0),'LCDRetainerUpper':App.Vector(-55,0,0)}
+original={}
+for name,offset in offsets.items():
+    obj=doc.getObject(name);original[name]=App.Placement(obj.Placement)
+    obj.Placement.Base=obj.Placement.Base+offset
+doc.recompute();Gui.activeDocument().activeView().fitAll()
+Gui.activeDocument().activeView().saveImage(str(folder.parent/'images'/'cad-exploded.png'),1600,1200,'White')
+for name,placement in original.items():doc.getObject(name).Placement=placement
+doc.recompute();Gui.activeDocument().activeView().fitAll();doc.save()

@@ -1,0 +1,14 @@
+[Unit]
+Description=LAUNCHPAD native touchscreen UI
+After=launchpad.service
+Wants=launchpad.service
+
+[Service]
+User=pi
+WorkingDirectory=/home/pi/LAUNCHPAD
+ExecStart=/home/pi/LAUNCHPAD/.venv/bin/python /home/pi/LAUNCHPAD/firmware/lcd_client.py
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

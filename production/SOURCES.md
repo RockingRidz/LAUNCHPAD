@@ -1,0 +1,23 @@
+# Sources and provenance
+
+Checked 7 November 2026. Supplier prices and stock can change; estimates are marked in `bom.csv`. No orders were placed. Source URLs are also recorded per part in the BOM.
+
+- Raspberry Pi Zero 2 W specifications and setup: https://www.raspberrypi.com/documentation/computers/zero.html and https://www.raspberrypi.com/documentation/computers/getting-started.html
+- Selected screen: Waveshare SKU16446 https://www.waveshare.com/product/displays/lcd-oled/lcd-oled-2/2.8inch-resistive-touch-lcd.htm and https://www.waveshare.com/wiki/2.8inch_Resistive_Touch_LCD . Manufacturer lists 79.9 x50.8 mm outline, 57.6 x43.2 mm active area, 5 V supply and 3.3 V logic. Wiki notes HX8347D and ST7789 revisions. ST7789 revision required for this code.
+- Screen supplier https://hubtronics.in/display-devices/lcds/other-lcds/2.8inch-resistive-touch-lcd : Rs1475 including GST, three in stock on retrieved listing, but controller revision must be confirmed. Supplier specifications say HX8347D; do not purchase without confirmation of ST7789. This is a sourcing risk, not a verified compatible checkout basket.
+- Pi price reference: https://robu.in/product-category/raspberry-pi-pico/ lists Zero 2 W Rs2079; confirm on actual product checkout. The previously cited Tech Depot listing https://techdepot.in/products/raspberry-pi-zero-2-w now shows Rs5200, replacing the earlier Rs1639 observation.
+- Previous generic display https://www.sunrobotics.in/products/touchscreen-tft-display-spi-28 shows Rs746 but is out of stock and is not the selected module.
+- Storage price reference https://findmychips.com/c/development-boards/memory-cards-storage-board-accessories/microsd-sd-memory-cards . Aggregator listing, not verified checkout. Use branded storage from an authorized seller.
+- Buzzer: https://robu.in/product/5v-active-electromagnetic-buzzer-pack-of-5/ . Verify package quantity and current. 2N3904 reference https://robu.in/wp-content/uploads/2024/03/2861475.pdf . The proposed driver is designed for a <=20 mA load.
+- CAD export engine: FreeCAD 1.0.2 installed locally. Native `.FCStd`, STEP and STL exports are generated from `cad/build_rocket_v2.py`; source and JSON parameters are included. Exported shape validity/solid counts are in `cad/geometry-check.json`.
+- Electronic symbols: KiCad 10 standard Connector_Generic, Device and Transistor_BJT libraries, embedded in the schematic. Upstream symbol licensing applies: https://www.kicad.org/libraries/license/ . LCD logical harness symbol authored for this design; its numbers are not manufacturer's board pin numbers.
+- Orbital propagation: https://rhodesmill.org/skyfield/earth-satellites.html . CelesTrak NORAD25544 TLE https://celestrak.org/NORAD/elements/gp.php?CATNR=25544&FORMAT=TLE . Fresh elements matter; this project disables alerts when TLE age exceeds seven days.
+- ISS position API: https://wheretheiss.at/w/developer ; endpoint https://api.wheretheiss.at/v1/satellites/25544 . Cached at 15-second intervals.
+- Launches: https://ll.thespacedevs.com/docs/ and https://github.com/TheSpaceDevs/Tutorials/blob/main/tutorials/getting_started_LL2/README.md . Upcoming-launch endpoint cached 30 minutes; schedule is subject to change. Public API availability/rate limits are external dependencies.
+- Weather: https://open-meteo.com/en/docs . Location is manually configured; current weather and sunrise/sunset queried no more than every 15 minutes. Review Open-Meteo's attribution/usage terms for any public deployment.
+- Visibility guidance: https://www.nasa.gov/missions/station/spot-the-station-frequently-asked-questions/ . An above-horizon pass is different from a visible pass. This code estimates conditions only at the pass peak, using satellite illumination and observer solar altitude; weather is separate.
+- Printing reference https://3deality.in/custom-print advertises PLA+ from Rs5/g plus GST. Own-printer material allowance and commercial printing are different costs. The model is not a supplier-quoted print job.
+
+No physical build photographs are included. Documentation images are labelled CAD/software previews. No video footage or NASA images are bundled. No token, location, password or account configuration belongs in the repository.
+
+Official dimensional drawing used for visual review: https://www.waveshare.net/w/upload/b/b8/2_8inch_resistive_touch_lcd.pdf . Official STEP ZIP used for local collision checks: https://www.waveshare.net/w/upload/3/3b/2_8inch_resistive_touch_lcd_3d.zip . The native assembly contains original simplified reference envelopes rather than redistributing that vendor model.
