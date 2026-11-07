@@ -38,7 +38,6 @@
   "pcb/build_schematic_v2.py": "cd4cc1d161e0044d57a86cb12359b9ec7617e696a8ea1a1b210a0aae45c8233e",
   "pcb/ERC.rpt": "a3e660c0aae2d442e16668de63ff1db2a5a10474902058dd69803d2833e04e84",
   "pcb/GERBERS-NOT-APPLICABLE.md": "abf4cb93ddf88448a3cf335d3f2a59d2b1bfc36a00a506b4cfa07b78a74f6784",
-  "pcb/LAUNCHPAD.kicad_prl": "f6c41e7e4d8735cae4b8e241a0675a4392deee941bb69c4e45584aa9a287f834",
   "pcb/LAUNCHPAD.kicad_pro": "c70ac5d260466c91b15333b415fa0b806bcb6888d2ab99fdefa14a42eb5d4a40",
   "pcb/LAUNCHPAD.kicad_sch": "1b2120d4ae69d582dcb1469c8caf81e900ccdb8c40002c4300ce49825110d796",
   "pcb/LAUNCHPAD.kicad_sym": "8bad871ac6e2915fa251dc59c7bfc162f5e33a3c040e77ebda84deda76edf897",
