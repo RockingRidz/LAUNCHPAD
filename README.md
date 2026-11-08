@@ -70,3 +70,7 @@ ISS Watch lists upcoming predicted passes with peak viewing directions and orbit
 The browser simulator has 1 km, 2.5 km and 5 km targets, pause/resume, speed/time/peak telemetry and locally saved best fuel results. The native LCD client browses multiple passes and labels stale cached feeds. Fit coupons for the nose and screen opening are in `cad/fit-checks/`; they do not change the main enclosure dimensions.
 
 Run `node firmware/test_mission.cjs` for the flight/compass checks, alongside the ten Python tests. See [budget feasibility](production/BUDGET.md) for the Rs3500 question. No extra electronics are required.
+
+## Native touchscreen update 0.6
+
+The portrait simulator now supports 1 km, 2.5 km and 5 km targets, explicit pause/resume, speed/time telemetry and terminal landing states. A held touch fires once, and changing modes freezes the native flight. Use `python firmware/preflight.py` before setup or add `--hardware` on the Pi to check SPI devices and calibration without driving any pins. Sixteen Python tests cover server behavior, touch sampling, native flight and preflight reporting.

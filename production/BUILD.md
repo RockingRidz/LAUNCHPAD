@@ -79,3 +79,11 @@ No Gerbers are supplied because no board is being fabricated. `pcb/GERBERS-NOT-A
 Run `cad/make_fit_coupons.py` using FreeCAD Python. Print both nose rings to test the nominal 0.3 mm radial clearance, and the screen aperture coupon to check the purchased panel before the full barrel. These test pieces use approximately 10.4 g of geometric PLA before slicing.
 
 `visible_passes_only: true` in local config suppresses alerts unless peak visibility is positively predicted. Browser simulation has selectable targets; changing targets resets the flight. Pause freezes physics. Best fuel results are stored only in that browser. The Pi client retains its smaller vertical model.
+
+## Preflight and portrait controls (0.6)
+
+From the repository root, run `.venv/bin/python firmware/preflight.py --hardware`. A FAIL exits with code 1; WARN identifies optional setup or a manual check. The checker does not drive GPIO, verify the LCD controller electrically, test the power supply, or contact remote services. Coordinates are omitted from its report. `--json` provides a machine-readable report. Install the requirements inside the project virtual environment before expecting dependency checks to pass.
+
+On the native SIM screen, tap the target label before ignition to cycle 1000/2500/5000 m. Tap the throttle bar, IGNITE, then PAUSE/RESUME as needed. Tap STAGE once to discard dry mass. A landed or completed flight requires RESET. Holding a finger on a button does not repeat it. Switching away from SIM freezes its physics. Run `lcd_client.py --port 8082` if your server uses a non-default port.
+
+This vertical model is educational and differs from the browser's two-axis model. Hardware frame timing limits its speed; it is not a real-time flight instrument. All controller, touch, power and mechanical checks still require the purchased hardware.

@@ -4,7 +4,8 @@ No Linux desktop needed. Hardware bring-up and touch calibration remain mandator
 HX8347D revisions need a different driver and are deliberately rejected.
 """
 from pathlib import Path
-import argparse,json,time,statistics,math
+import argparse,json,time,statistics
+from flight import Flight
 from urllib.request import urlopen
 from PIL import Image, ImageDraw, ImageFont
 
@@ -69,9 +70,9 @@ def touch_point(raw,cal,swap=False):
     return round(20+(x-a[0])*200/(b[0]-a[0])),round(30+(y-a[1])*260/(b[1]-a[1]))
 
 def main():
-    p=argparse.ArgumentParser();p.add_argument('--driver',choices=['st7789'],default='st7789');p.add_argument('--calibrate',action='store_true');p.add_argument('--swap-touch',action='store_true');p.add_argument('--calibration',type=Path,default=Path(__file__).with_name('touch-calibration.json'));args=p.parse_args()
+    p=argparse.ArgumentParser();p.add_argument('--driver',choices=['st7789'],default='st7789');p.add_argument('--calibrate',action='store_true');p.add_argument('--swap-touch',action='store_true');p.add_argument('--calibration',type=Path,default=Path(__file__).with_name('touch-calibration.json'));p.add_argument('--port',type=int,default=8080);args=p.parse_args()
     display=Display();small,big=fonts();mode=0;selected=0;last_fetch=0;state={};last_touch=0
-    height=velocity=0.;fuel=36.;throttle=.7;angle=0;running=False;stage=1;dry=14;message='Target 1000m';last=time.monotonic()
+    flight=Flight();last=time.monotonic();touch_held=False
     try:
         if args.calibrate:calibrate(display,args.calibration);return
         if not args.calibration.exists():raise RuntimeError('Run --calibrate first')
@@ -81,33 +82,31 @@ def main():
             now=time.monotonic();dt=min(now-last,.1);last=now
             if now-last_fetch>=5:
                 try:
-                    with urlopen('http://127.0.0.1:8080/api/state',timeout=2) as response:state=json.load(response)
+                    with urlopen(f'http://127.0.0.1:{args.port}/api/state',timeout=2) as response:state=json.load(response);state.pop('disconnected',None)
                 except Exception:state['disconnected']=True
                 last_fetch=now
             point=touch_point(display.raw_touch(),cal,args.swap_touch)
-            if point and now-last_touch>.22:
+            if point and not touch_held and now-last_touch>.22:
                 last_touch=now;x,y=point
                 if y>280:mode=max(0,min(4,x//48))
                 elif mode==4:
                     if 220<y<274:
-                        if x<60:angle=max(-70,angle-5)
-                        elif x<120:running=not running
-                        elif x<180:angle=min(70,angle+5)
-                        else:height=velocity=0;fuel=36;stage=1;dry=14;running=False;message='Target 1000m'
-                    elif 170<y<210:throttle=max(0,min(1,(x-10)/220))
-                    elif 135<y<165 and running and stage==1:stage=2;dry-=4
+                        if x<60:flight.angle=max(-85,flight.angle-5)
+                        elif x<120:flight.toggle()
+                        elif x<180:flight.angle=min(85,flight.angle+5)
+                        else:flight=Flight(target=flight.target)
+                    elif 170<y<210:flight.throttle=max(0,min(1,(x-10)/220))
+                    elif 135<y<165:flight.separate()
+                    elif 75<y<110 and not flight.running:flight=Flight(target={1000:2500,2500:5000,5000:1000}[flight.target])
                 elif mode in (0,1,2):selected+=1
-            if running:
-                used=min(fuel,1.4*throttle*dt);thrust=780*throttle if used>0 else 0;fuel-=used
-                velocity+=(math.cos(math.radians(angle))*thrust/(dry+fuel)-9.81-.018*velocity*abs(velocity)/(dry+fuel))*dt;height+=velocity*dt
-                if height>=1000:running=False;message='TARGET REACHED'
-                elif height<0:height=0;velocity=0;running=False;message='Landed - reset to retry'
+            touch_held=point is not None
+            if mode==4:flight.step(dt)
             im=Image.new('RGB',(240,320),'#08131b');d=ImageDraw.Draw(im)
             def text(y,s,large=False,color='#dae7ed'):d.text((10,y),str(s)[:33],font=big if large else small,fill=color)
-            text(5,'LAUNCHPAD',True,'#ff994c');text(32,'DEMO DATA' if state.get('demo') else 'OFFLINE' if state.get('disconnected') else 'MISSION CONTROL',color='#abf078')
+            text(5,'LAUNCHPAD',True,'#ff994c');text(32,'OFFLINE / LAST DATA' if state.get('disconnected') else 'DEMO DATA' if state.get('demo') else 'MISSION CONTROL',color='#abf078')
             labels=['ISS','LAUNCH','BRIEF','SKY','SIM'];text(55,labels[mode],True)
             feed_key=['iss','launches','launches','weather',None][mode]
-            if feed_key and (state.get(feed_key) or {}).get('stale'):text(32,'CACHED / STALE DATA',color='#ff994c')
+            if not state.get('disconnected') and feed_key and (state.get(feed_key) or {}).get('stale'):text(32,'CACHED / STALE DATA',color='#ff994c')
             launch=(state.get('launches') or {}).get('data') or []
             if mode==0:
                 pos=(state.get('iss') or {}).get('data') or {};orbit=state.get('orbit') or {};passes=orbit.get('passes') or []
@@ -134,11 +133,11 @@ def main():
                 for y,key,title,unit in [(90,'temperature_2m','Temp','C'),(125,'cloud_cover','Cloud','%'),(160,'relative_humidity_2m','Humidity','%'),(195,'wind_speed_10m','Wind','km/h')]:text(y,f'{title}: {c.get(key,"--")} {unit}')
                 text(245,'Configure location for weather')
             else:
-                text(85,f'{height:.0f}m   {fuel:.1f}kg',True);text(113,f'Angle {angle}  Stage {stage}')
+                text(79,f'Target {flight.target}m - tap to change');text(98,f'{flight.height:.0f}m  {flight.fuel:.1f}kg',True);text(122,f'{flight.velocity:.1f}m/s  {flight.elapsed:.1f}s  S{flight.stage}')
                 d.rectangle((10,136,230,164),outline='#385061');text(141,'TAP HERE TO STAGE')
-                d.rectangle((10,176,230,205),outline='#ff994c');d.rectangle((10,176,10+int(220*throttle),205),fill='#344b39');text(181,f'Throttle {throttle:.0%}')
-                for i,label in enumerate(['LEFT','IGNITE','RIGHT','RESET']):d.rectangle((i*60,222,i*60+58,267),outline='#385061');d.text((i*60+4,238),label,font=small,fill='white')
-                text(267,message)
+                d.rectangle((10,176,230,205),outline='#ff994c');d.rectangle((10,176,10+int(220*flight.throttle),205),fill='#344b39');text(181,f'Throttle {flight.throttle:.0%}')
+                for i,label in enumerate(['LEFT','RESUME' if flight.paused else 'PAUSE' if flight.running else 'IGNITE','RIGHT','RESET']):d.rectangle((i*60,222,i*60+58,267),outline='#385061');d.text((i*60+4,238),label,font=small,fill='white')
+                text(267,flight.message)
             for i,label in enumerate(labels):
                 d.rectangle((i*48,283,i*48+46,319),fill='#abf078' if i==mode else '#142734');d.text((i*48+5,294),label,font=small,fill='black' if i==mode else 'white')
             display.show(im);time.sleep(.08)

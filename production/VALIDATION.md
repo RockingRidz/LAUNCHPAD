@@ -26,3 +26,7 @@ The selected supplier page advertises HX8347D while current manufacturer instruc
 No custom PCB layout or Gerbers exist because this design uses a wired assembly. No fake manufacturing ZIP is included.
 
 Update 0.5 adds tests for visible-only alerts, stable demo schedules and JavaScript checks for compass wrapping, successful flight, nonnegative fuel, pause, landing, tilt failure and custom targets. Fit coupons are valid single solids; their material estimates are in `cad/fit-checks/fit-checks.json`. Core enclosure geometry and hardware mapping are unchanged.
+
+## Revision 0.6 software validation
+
+Sixteen Python tests pass, including native flight pause/resume, terminal success/landing, one-time staging and private-coordinate omission in preflight reports. Browser physics checks and netlist mapping checks also pass. The read-only preflight checker correctly reports missing Skyfield and observing coordinates on the development installation; these are installation requirements, not a verified Pi setup. No GPIO or physical display was exercised.
