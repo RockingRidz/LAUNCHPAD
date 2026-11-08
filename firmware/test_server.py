@@ -4,6 +4,18 @@ from unittest.mock import Mock,patch
 import server
 
 class StationTests(unittest.TestCase):
+    def test_visible_only_alerts_skip_unknown_and_invisible_passes(self):
+        s=server.Station({'visible_passes_only':True},demo=True)
+        s.check_alerts({'passes':[{'rise':1100,'visible_estimate':None}]},1000)
+        s.check_alerts({'passes':[{'rise':1100,'visible_estimate':False}]},1000)
+        self.assertFalse(s.alerts)
+        s.check_alerts({'passes':[{'rise':1100,'visible_estimate':True}]},1000)
+        self.assertEqual(len(s.alerts),1)
+    def test_demo_schedule_does_not_reset_on_refresh(self):
+        s=server.Station({},demo=True)
+        a=s.snapshot();b=s.snapshot()
+        self.assertEqual(a['launches']['data'][0]['net'],b['launches']['data'][0]['net'])
+        self.assertEqual(a['orbit']['passes'][0]['rise'],b['orbit']['passes'][0]['rise'])
     def test_cache_survives_network_failure_and_backs_off(self):
         with tempfile.TemporaryDirectory() as tmp:
             loader=Mock(side_effect=[{'ok':True},RuntimeError('offline')])

@@ -92,7 +92,7 @@ class Orbit:
 
 class Station:
     def __init__(self,config,demo=False):
-        self.config=config; self.demo=demo; self.stop=threading.Event(); self.orbit=Orbit(config)
+        self.config=config; self.demo=demo; self.started=time.time(); self.stop=threading.Event(); self.orbit=Orbit(config)
         self.lock=threading.Lock(); self.orbit_data={'passes':[],'error':'Starting orbit service'}
         self.alerts=[]; self.notified=set(); self.buzzer=None; self.muted_until=0
         cache=ROOT/'cache'
@@ -131,6 +131,7 @@ class Station:
         now=time.time() if now is None else now
         if result.get('stale') or result.get('error'): return
         for event in result.get('passes',[]):
+            if self.config.get('visible_passes_only',False) and event.get('visible_estimate') is not True: continue
             key=event['rise']; seconds=key-now
             if 0<=seconds<=self.config.get('alert_seconds',120) and key not in self.notified:
                 self.notified.add(key)
@@ -150,9 +151,11 @@ class Station:
     def snapshot(self):
         if self.demo:
             now=time.time()
-            launch={'id':'demo','name':'DEMO / Aurora test flight','net':datetime.fromtimestamp(now+3600,timezone.utc).isoformat(),'status':'Simulated schedule','rocket':'Aurora Mk I (fictional)','provider':'LAUNCHPAD demo','pad':'Demonstration pad','mission':{'name':'Educational payload','description':'Fictional demonstration data. No real launch is represented.'}}
+            launch={'id':'demo','name':'DEMO / Aurora test flight','net':datetime.fromtimestamp(self.started+3600,timezone.utc).isoformat(),'status':'Simulated schedule','rocket':'Aurora Mk I (fictional)','provider':'LAUNCHPAD demo','pad':'Demonstration pad','mission':{'name':'Educational payload','description':'Fictional demonstration data. No real launch is represented.'}}
             wrap=lambda d:{'data':d,'updated':now,'stale':False,'error':None}
-            return {'demo':True,'iss':wrap({'latitude':12.3,'longitude':76.5,'altitude':420}),'launches':wrap([launch]),'weather':wrap({'current':{'temperature_2m':26,'cloud_cover':35,'relative_humidity_2m':65,'wind_speed_10m':8},'daily':{'sunrise':['2026-11-07T06:20'],'sunset':['2026-11-07T18:05']}}),'orbit':{'passes':[{'rise':now+600,'peak':now+780,'set':now+960,'max_elevation':58,'visible_estimate':True}],'tle_age_days':0,'stale':False},'alerts':[]}
+            day=datetime.now().date().isoformat()
+            passes=[{'rise':self.started+600+i*5700,'peak':self.started+780+i*5700,'set':self.started+960+i*5700,'max_elevation':58-i*8,'azimuth':45+i*90,'visible_estimate':i==0} for i in range(3)]
+            return {'demo':True,'iss':wrap({'latitude':12.3,'longitude':76.5,'altitude':420}),'launches':wrap([launch]),'weather':wrap({'current':{'temperature_2m':26,'cloud_cover':35,'relative_humidity_2m':65,'wind_speed_10m':8},'daily':{'sunrise':[day+'T06:20'],'sunset':[day+'T18:05']}}),'orbit':{'passes':passes,'tle_age_days':0,'stale':False},'alerts':[]}
         with self.lock: orbit=dict(self.orbit_data); alerts=list(self.alerts)
         return {'demo':False,**{k:v.snapshot() for k,v in self.feeds.items()},'orbit':orbit,'alerts':alerts}
     def close(self):
@@ -167,7 +170,7 @@ def make_handler(station):
             if path=='/api/state':
                 body=json.dumps(station.snapshot(),allow_nan=False).encode()
                 self.send_response(200); self.send_header('Content-Type','application/json'); self.send_header('Cache-Control','no-store'); self.send_header('Content-Length',str(len(body))); self.end_headers(); self.wfile.write(body)
-            elif path in ('/','/index.html','/app.js','/style.css'):
+            elif path in ('/','/index.html','/app.js','/mission.js','/style.css'):
                 super().do_GET()
             else: self.send_error(404)
         def do_POST(self):
@@ -188,6 +191,7 @@ def load_config(path):
     if (config.get('latitude') is None)!=(config.get('longitude') is None): raise ValueError('Set both latitude and longitude')
     if not 0<=config.get('alert_seconds',120)<=900: raise ValueError('alert_seconds must be 0..900')
     quiet=config.get('quiet_hours',[22,7])
+    if not isinstance(config.get('visible_passes_only',False),bool): raise ValueError('visible_passes_only must be true or false')
     if len(quiet)!=2 or any(not isinstance(x,int) or not 0<=x<24 for x in quiet): raise ValueError('Invalid quiet_hours')
     return config
 

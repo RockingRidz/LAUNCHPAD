@@ -1,0 +1,17 @@
+{
+  "NoseFemaleCoupon": {
+    "valid": true,
+    "volume_mm3": 2925.45,
+    "pla_g": 3.63
+  },
+  "NoseMaleCoupon": {
+    "valid": true,
+    "volume_mm3": 2721.88,
+    "pla_g": 3.38
+  },
+  "ScreenApertureCoupon": {
+    "valid": true,
+    "volume_mm3": 2707.2,
+    "pla_g": 3.36
+  }
+}

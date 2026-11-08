@@ -53,7 +53,7 @@ Start with [BUILD.md](production/BUILD.md). Six printable parts include the barr
 
 ## Sources and software
 
-Case: FreeCAD 1.0, exported as `.FCStd`, `.STEP` and `.STL`, generated from the included parameter file and Python source. Electronics: KiCad 10 schematic and netlist, using standard symbols plus a logical display harness. Firmware: Python and browser JavaScript; no custom PCB required. Files were developed with AI assistance; physical assembly has not been performed.
+Case: FreeCAD 1.0, exported as `.FCStd`, `.STEP` and `.STL`, generated from the included parameter file and Python source. Electronics: KiCad 10 schematic and netlist, using standard symbols plus a logical display harness. Firmware: Python and browser JavaScript; no custom PCB required. Physical assembly has not been performed.
 
 Sources: [Waveshare module documentation](https://www.waveshare.com/wiki/2.8inch_Resistive_Touch_LCD), [Skyfield](https://rhodesmill.org/skyfield/earth-satellites.html), [CelesTrak](https://celestrak.org/NORAD/elements/), [Where the ISS at?](https://wheretheiss.at/w/developer), [Launch Library 2](https://ll.thespacedevs.com/docs/), [Open-Meteo](https://open-meteo.com/en/docs). Full citations and limits are in [SOURCES.md](production/SOURCES.md). Respect each provider's current usage terms; cached data can be stale.
 
@@ -62,3 +62,11 @@ The public repository must not contain local config, coordinates, tokens, caches
 ## Design checks in revision 0.4
 
 The LCD and alert circuit are directly wired in the schematic. KiCad ERC reports **0 errors and 0 warnings**. All six printed parts are valid single solids, have no mutual collisions, and clear the vendor LCD STEP at the planned position. Eight unit tests pass. Physical printing, wiring and controller bring-up are still required. The current sourced/estimated BOM totals approximately **Rs5491 with your own printer**; commercially printed parts cost more.
+
+## Software update 0.5
+
+ISS Watch lists upcoming predicted passes with peak viewing directions and orbital-data age. Set `visible_passes_only` in your local config to suppress alerts for passes whose peak visibility is unknown or false. Demo countdowns advance instead of resetting at every refresh.
+
+The browser simulator has 1 km, 2.5 km and 5 km targets, pause/resume, speed/time/peak telemetry and locally saved best fuel results. The native LCD client browses multiple passes and labels stale cached feeds. Fit coupons for the nose and screen opening are in `cad/fit-checks/`; they do not change the main enclosure dimensions.
+
+Run `node firmware/test_mission.cjs` for the flight/compass checks, alongside the ten Python tests. See [budget feasibility](production/BUDGET.md) for the Rs3500 question. No extra electronics are required.

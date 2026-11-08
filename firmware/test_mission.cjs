@@ -1,0 +1,10 @@
+const assert=require('node:assert/strict');
+const {compass,flightStep}=require('./static/mission.js');
+const fresh=()=>({height:0,vx:0,vz:0,x:0,angle:0,throttle:1,fuel:36,dry:14,target:1000,running:true,finished:false});
+assert.equal(compass(0),'N');assert.equal(compass(90),'E');assert.equal(compass(-90),'W');assert.equal(compass(360),'N');assert.equal(compass(NaN),'Unknown');
+let s=fresh();for(let i=0;i<6000&&!s.finished;i++)flightStep(s,1/60);assert.ok(s.success);assert.ok(s.height>=1000);assert.ok(s.fuel>=0);
+s=fresh();s.paused=true;const before=JSON.stringify(s);flightStep(s,1/60);assert.equal(JSON.stringify(s),before);
+s=fresh();s.throttle=0;flightStep(s,1/60);assert.ok(s.finished);assert.equal(s.height,0);
+s=fresh();s.angle=80;flightStep(s,1/60);assert.ok(s.finished);assert.ok(!s.success);
+s=fresh();s.target=5000;flightStep(s,.01);assert.ok(!s.finished);assert.equal(s.target,5000);
+console.log('PASS: compass wrapping, successful flight, fuel bounds, pause, landing, tilt failure and custom target');

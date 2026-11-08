@@ -96,7 +96,7 @@ def main():
                         else:height=velocity=0;fuel=36;stage=1;dry=14;running=False;message='Target 1000m'
                     elif 170<y<210:throttle=max(0,min(1,(x-10)/220))
                     elif 135<y<165 and running and stage==1:stage=2;dry-=4
-                elif mode in (1,2):selected+=1
+                elif mode in (0,1,2):selected+=1
             if running:
                 used=min(fuel,1.4*throttle*dt);thrust=780*throttle if used>0 else 0;fuel-=used
                 velocity+=(math.cos(math.radians(angle))*thrust/(dry+fuel)-9.81-.018*velocity*abs(velocity)/(dry+fuel))*dt;height+=velocity*dt
@@ -106,15 +106,17 @@ def main():
             def text(y,s,large=False,color='#dae7ed'):d.text((10,y),str(s)[:33],font=big if large else small,fill=color)
             text(5,'LAUNCHPAD',True,'#ff994c');text(32,'DEMO DATA' if state.get('demo') else 'OFFLINE' if state.get('disconnected') else 'MISSION CONTROL',color='#abf078')
             labels=['ISS','LAUNCH','BRIEF','SKY','SIM'];text(55,labels[mode],True)
+            feed_key=['iss','launches','launches','weather',None][mode]
+            if feed_key and (state.get(feed_key) or {}).get('stale'):text(32,'CACHED / STALE DATA',color='#ff994c')
             launch=(state.get('launches') or {}).get('data') or []
             if mode==0:
                 pos=(state.get('iss') or {}).get('data') or {};orbit=state.get('orbit') or {};passes=orbit.get('passes') or []
                 text(90,'LAT '+str(round(pos.get('latitude',0),2)) if pos else 'Position unavailable')
                 text(115,'LON '+str(round(pos.get('longitude',0),2)) if pos else '')
                 if passes:
-                    event=passes[0];text(150,'PASS IN '+str(max(0,int(event['rise']-time.time())))+'s',True);text(180,'Max elevation '+str(event.get('max_elevation')))
+                    event=passes[selected%len(passes)];text(150,'PASS IN '+str(max(0,int(event['rise']-time.time())))+'s',True);text(180,'Max elevation '+str(event.get('max_elevation')))
                 else:text(150,'No predicted pass available')
-                text(215,'Orbit stale' if orbit.get('stale') else 'Pass visibility is conditional')
+                text(215,'Orbit stale' if orbit.get('stale') else 'Pass visibility is conditional');text(245,'Tap to browse '+str(len(passes))+' passes')
             elif mode in (1,2):
                 if launch:
                     item=launch[selected%len(launch)];text(90,item.get('name'));text(115,item.get('status'));text(140,item.get('net'))

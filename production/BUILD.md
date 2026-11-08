@@ -72,4 +72,10 @@ No Gerbers are supplied because no board is being fabricated. `pcb/GERBERS-NOT-A
 
 ## CAD revision 0.4 checks
 
-`cad/geometry-check.json` records valid single solids, zero printed-part intersections and zero intersections with Waveshare’s official LCD STEP at the planned placement. Download the reference STEP ZIP from the source link in SOURCES.md, extract it locally and pass `--lcd-reference /path/to/2_8inch_resistive_touch_lcd.stp` when regenerating. The third-party STEP is not redistributed. `cad/OPEN_LAUNCHPAD.FCMacro` is an optional FreeCAD macro that colours the assembly and generates views; open it in FreeCAD and run it only after reviewing the included source. The native file includes grouped printed parts and simplified hardware references.
+`cad/geometry-check.json` records valid single solids, zero printed-part intersections and zero intersections with Waveshareâ€™s official LCD STEP at the planned placement. Download the reference STEP ZIP from the source link in SOURCES.md, extract it locally and pass `--lcd-reference /path/to/2_8inch_resistive_touch_lcd.stp` when regenerating. The third-party STEP is not redistributed. `cad/OPEN_LAUNCHPAD.FCMacro` is an optional FreeCAD macro that colours the assembly and generates views; open it in FreeCAD and run it only after reviewing the included source. The native file includes grouped printed parts and simplified hardware references.
+
+## Fit coupons and upgraded controls
+
+Run `cad/make_fit_coupons.py` using FreeCAD Python. Print both nose rings to test the nominal 0.3 mm radial clearance, and the screen aperture coupon to check the purchased panel before the full barrel. These test pieces use approximately 10.4 g of geometric PLA before slicing.
+
+`visible_passes_only: true` in local config suppresses alerts unless peak visibility is positively predicted. Browser simulation has selectable targets; changing targets resets the flight. Pause freezes physics. Best fuel results are stored only in that browser. The Pi client retains its smaller vertical model.

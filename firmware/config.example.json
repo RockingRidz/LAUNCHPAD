@@ -2,6 +2,7 @@
   "latitude": null,
   "longitude": null,
   "alert_seconds": 120,
+  "visible_passes_only": false,
   "quiet_hours": [22, 7],
   "buzzer_enabled": false
 }
