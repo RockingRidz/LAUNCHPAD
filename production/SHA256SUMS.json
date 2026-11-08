@@ -4,7 +4,7 @@
   "bom.csv": "1d023f4f9141a817d0174407a1c20ff82e0aca03955553a9d3d057a8af516e56",
   "cad/build_rocket.py": "abf6056182dfa7b25b3b751d90cbb046818129283b96d30815518b55d549a8e1",
   "cad/build_rocket_v2.py": "2270886a553c03b275fc8c0bea3dc2a9dcbea97f05310ac489bd6f12cd3380e2",
-  "cad/fit-checks/fit-checks.json": "10f86f72ebdf5c14a6b26b5a5aac4feb530db7beff47c47792973e97f542599f",
+  "cad/fit-checks/fit-checks.json": "e5599b79abab3fdb18d8c0d2c5688bb1d78852d9274fc258aa54d15fa78cacae",
   "cad/fit-checks/FitChecks.FCStd": "a5bff3e60389a2795a89b4da9f364780a403fbe325e2758b743bd31b7a0fc3bb",
   "cad/fit-checks/NoseFemaleCoupon.step": "192dd16f31e040fa59f35de543cd7db829223fac059bc5642c099341cde3004c",
   "cad/fit-checks/NoseFemaleCoupon.stl": "185251fc0c105f402dbc5b46a00536d074ffac9b7697c78cabdf04aff9ff2c3b",
