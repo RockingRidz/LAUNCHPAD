@@ -1,7 +1,7 @@
 {
   ".gitattributes": "0601c406f099f968ec533b06714af20c5aad9a751d4fa6a791fcbb97370b32e0",
   ".gitignore": "72623182bad61bab5f3f1ae1331c17b617fc45ab71e23107da808916bc3bf5a0",
-  "bom.csv": "1d023f4f9141a817d0174407a1c20ff82e0aca03955553a9d3d057a8af516e56",
+  "bom.csv": "a895e2df45834ae353d9eddaca62a9d2706960ac3f2daefc2478e1903515ec4c",
   "cad/build_rocket.py": "abf6056182dfa7b25b3b751d90cbb046818129283b96d30815518b55d549a8e1",
   "cad/build_rocket_v2.py": "2270886a553c03b275fc8c0bea3dc2a9dcbea97f05310ac489bd6f12cd3380e2",
   "cad/fit-checks/fit-checks.json": "e5599b79abab3fdb18d8c0d2c5688bb1d78852d9274fc258aa54d15fa78cacae",
@@ -62,12 +62,15 @@
   "pcb/LAUNCHPAD.pdf": "1d6c7e752786b25054d289aae147f1f01aad484798812dbe9403b778b18bb16a",
   "pcb/sym-lib-table": "bb974ae5bba8c28170ca0baaeb92161991a4ce1c4f7d8a33a2aeb8bd237f9fa3",
   "pcb/wiring.csv": "384a5a54325a7d93b99929ee7aa20590384b6ee6aeb2086c28331ac3c2834ae9",
-  "production/BUDGET.md": "f86c945ae7fac22d9a1293c2d21057a438c9d32ff4045dbc87ab944b05338b1e",
-  "production/BUILD.md": "a9fec4449bb99bdd0490d23dea6d1c38e088311b027f3ac4795fcaa579c2ce1d",
+  "production/BUDGET.md": "c742832fd6a9bb0a7a6ce37ee3d0f1ce6cbcbf234147ad243352e68b24532b1b",
+  "production/BUILD.md": "1e744487026840f3149aee6288dbc078991fbcbdda0949b86a6f1fd64fe93b2d",
   "production/check_netlist.py": "1f30a2b8887357db8f1e8282f88529d565ed391258e7425dcea330afd9c3d1fb",
+  "production/LAUNCHPAD-CasePrintSet.stl": "0d250bd61a9c008d215ba41693b76622cdef5eb640080e4eb6c54fdeb267ec77",
   "production/launchpad-lcd.service": "9b5d013ef8280886a1e7750217e70cccc51081f2e54b8fe8642ab28c976c66d3",
   "production/launchpad.service": "71db66cf6d8a587e931c7c3f8ce319f569d73ed0b84afe77b587a51a61b4bff6",
+  "production/PRINT-QUOTE.md": "36bf80dedb4d34a2e7f59d652a0d6710af2f343946c5416b77279d45de5ffa40",
   "production/SOURCES.md": "b674d3b0dfbb57ff43f01939bbaf70f325d6cebf57b52596b7bbf01f979ae4a9",
-  "production/VALIDATION.md": "1fc200864f8859872a567a164686247e9d0b4df165967621ebead3c7a6a1df7d",
-  "README.md": "3eb9be93347b40cf1f88abeb7f46e4cef55daa001e8eb1d7af461e712d894998"
+  "production/SUBMISSION.md": "26d46860f2eb779603ebe14e6ac5508fb84fbf754c212172aff255b2512d480d",
+  "production/VALIDATION.md": "d17417c0c5249d29ef1ff623787292a58fc4a727a483f92fcd0ad19eb255cf3a",
+  "README.md": "5bf2f0cd9170b1d5b71c8908ee985a746e7fa0b0bf9f93d6cb99bec37c689ea6"
 }

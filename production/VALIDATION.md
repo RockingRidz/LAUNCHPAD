@@ -1,4 +1,4 @@
-# Validation status — 7 November 2026
+# Validation status — 8 November 2026
 
 This is a design/source package for an unbuilt prototype. It is not a physically verified production release.
 
@@ -30,3 +30,7 @@ Update 0.5 adds tests for visible-only alerts, stable demo schedules and JavaScr
 ## Revision 0.6 software validation
 
 Sixteen Python tests pass, including native flight pause/resume, terminal success/landing, one-time staging and private-coordinate omission in preflight reports. Browser physics checks and netlist mapping checks also pass. The read-only preflight checker correctly reports missing Skyfield and observing coordinates on the development installation; these are installation requirements, not a verified Pi setup. No GPIO or physical display was exercised.
+
+## Final release 0.7
+
+Re-ran all 16 Python tests, browser model assertions, JavaScript syntax, Python compilation, netlist mapping and KiCad ERC (0 errors / 0 warnings). Only cost/scope documentation and BOM changed after software checks; core CAD and wiring remain unchanged. The minimum-cost assembly omits the optional buzzer branch, which remains documented in the full schematic. Battery mounting, protection and runtime are not verified.

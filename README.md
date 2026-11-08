@@ -30,12 +30,12 @@ Open **http://127.0.0.1:8080**. Demo data is visibly labelled and fictional. The
 
 ## Hardware
 
-- Raspberry Pi Zero 2 W, microSD, suitable micro-USB power supply.
+- Raspberry Pi Zero 2 W, microSD, regulated 5V micro-USB power from the existing battery/buck after load verification.
 - Waveshare **SKU16446, 2.8inch Resistive Touch LCD, ST7789 revision**, with XPT2046 touch. This replaces the initially unspecified 2.3-inch display. Confirm the controller with the seller; older HX8347D stock is not supported by the included native LCD client.
-- 5 V active buzzer <=20 mA, 2N3904, 1k and 100k resistors, 1N4148 diode.
+- Optional sound alerts: 5 V active buzzer <=20 mA, 2N3904, 1k and 100k resistors, 1N4148 diode.
 - Breadboard/perfboard, headers, jumper wire, mounting screws/spacers, foam tape, PLA.
 
-The [BOM](bom.csv) includes quantities, cost status, supplier links and source dates. Prices are not a checkout guarantee; delivery and locally quoted printing are separate. This all-new build exceeds the original Rs3144 budget. Do not order until checking the display revision and current costs.
+The [BOM](bom.csv) includes quantities, cost status, supplier links and source dates. Prices are not a checkout guarantee; printing and a delivery allowance are included as separate BOM lines. This all-new build exceeds the original Rs3144 budget. Do not order until checking the display revision and current costs.
 
 ## Files
 
@@ -59,18 +59,12 @@ Sources: [Waveshare module documentation](https://www.waveshare.com/wiki/2.8inch
 
 The public repository must not contain local config, coordinates, tokens, caches or touch calibration. Those files are ignored. No redistribution license has been selected by the owner; upstream symbols/dependencies retain their own licenses.
 
-## Design checks in revision 0.4
+## Submission release 0.7 — 8 November 2026
 
-The LCD and alert circuit are directly wired in the schematic. KiCad ERC reports **0 errors and 0 warnings**. All six printed parts are valid single solids, have no mutual collisions, and clear the vendor LCD STEP at the planned position. Eight unit tests pass. Physical printing, wiring and controller bring-up are still required. The current sourced/estimated BOM totals approximately **Rs5491 with your own printer**; commercially printed parts cost more.
+The final minimum-cost BOM totals **Rs5640**, including Robu's Rs951 six-part print quote, a Rs250 delivery allowance and a Rs50 power-lead allowance. It counts the owner's existing 12V battery and LM2596 at zero purchase cost and omits the optional buzzer circuit and its breadboard (Rs102 saved). All five display modes remain available; physical sound alerts require fitting the optional circuit. The Pi Rs2079 amount is an earlier listing observation, not a current checkout guarantee. This is **not a verified Rs3500 build**. See [budget](production/BUDGET.md) and [print quote](production/PRINT-QUOTE.md).
 
-## Software update 0.5
+ISS Watch lists predicted passes, peak directions and orbital-data age. The browser simulator offers 1/2.5/5 km targets, pause/resume, telemetry and saved fuel records. The portrait client supports the same targets with a simpler vertical model, release-to-repeat touch controls and pause/resume. Run `python firmware/preflight.py --hardware` on the Pi to check installation prerequisites without driving GPIO.
 
-ISS Watch lists upcoming predicted passes with peak viewing directions and orbital-data age. Set `visible_passes_only` in your local config to suppress alerts for passes whose peak visibility is unknown or false. Demo countdowns advance instead of resetting at every refresh.
+Final checks: **16 Python tests**, JavaScript simulation checks and netlist checks pass; KiCad ERC reports **0 errors and 0 warnings**. The six CAD solids and STEP/STL exports are included with fit coupons. Printing, battery power, LCD revision, touch and actual Pi operation remain untested. The battery stays external; the existing case does not have a verified battery/buck mounting design.
 
-The browser simulator has 1 km, 2.5 km and 5 km targets, pause/resume, speed/time/peak telemetry and locally saved best fuel results. The native LCD client browses multiple passes and labels stale cached feeds. Fit coupons for the nose and screen opening are in `cad/fit-checks/`; they do not change the main enclosure dimensions.
-
-Run `node firmware/test_mission.cjs` for the flight/compass checks, alongside the ten Python tests. See [budget feasibility](production/BUDGET.md) for the Rs3500 question. No extra electronics are required.
-
-## Native touchscreen update 0.6
-
-The portrait simulator now supports 1 km, 2.5 km and 5 km targets, explicit pause/resume, speed/time telemetry and terminal landing states. A held touch fires once, and changing modes freezes the native flight. Use `python firmware/preflight.py` before setup or add `--hardware` on the Pi to check SPI devices and calibration without driving any pins. Sixteen Python tests cover server behavior, touch sampling, native flight and preflight reporting.
+For the submission, use the repository URL and the source archive. [SUBMISSION.md](production/SUBMISSION.md) contains a concise project description and an accurate validation statement.

@@ -17,9 +17,9 @@ The selected display replaces the unspecified 2.3-inch panel with the user's aut
 5. Use thin foam tape around the PCB border to eliminate movement and to support light stylus pressure. Keep adhesive off the display, ribbon and components. Install through the open top with the nose removed, then secure the two retainer bridges from the rear using four M3 x10 self-tapping screws. The front shoulder and gasket support the panel; retainer pads support the PCB edges. Never use screw force to bend the board or glass.
 6. Mount the Pi on the carrier's four 58 x 23 mm hole centres. Use M2.5 nylon screws and spacers. Carrier stands vertically behind the screen in the assembly STEP. Attach through rear-cover holes using approximately 4 mm nylon spacers; verify screw engagement and avoid contact with the Pi's underside. Select screw length after the actual stack is assembled (allowance: M2.5 x20 plus shorter screws).
 7. Route a right-angle micro-USB power lead through the side opening with strain relief. The opening is a cable passage, not a precisely aligned panel socket. Position the Pi to suit the lead.
-8. Mount the buzzer driver on a mini breadboard or hand-soldered perfboard, insulate its underside, and secure it with foam tape. Secure wiring away from the Pi antenna and vents. Rear cover uses four M3 x10 self-tapping screws in printed pilot bosses; test screw fit on scrap first.
+8. If fitting optional sound alerts, mount the buzzer driver on a mini breadboard or hand-soldered perfboard, insulate its underside, and secure it with foam tape. Secure wiring away from the Pi antenna and vents. Rear cover uses four M3 x10 self-tapping screws in printed pilot bosses; test screw fit on scrap first.
 
-CAD solid volume implies approximately 210-230 g of PLA before slicer supports/changes. This is a geometric estimate, not a weighed or sliced print. Budget approximately 300 g including supports and coupons. A paid service at Rs5/g can add around Rs1500 plus tax/shipping, so this build is not a Rs3144 all-new build.
+CAD solid volume implies approximately 210-230 g of PLA before slicer supports/changes. This is a geometric estimate, not a weighed or sliced print. Budget approximately 300 g including supports and coupons. Robu's observed quote for the six-part set is Rs951 including GST, excluding coupons and delivery; see PRINT-QUOTE.md. This replaces the previous own-printer material allowance in the final BOM.
 
 ## Wire
 
@@ -27,7 +27,7 @@ Disconnect power. Follow `pcb/wiring.csv`, the named LCD pins and the KiCad sche
 
 The display is powered from the Pi's **5 V rail** but its control signals are **3.3 V logic**. Never connect 5 V to GPIO signals. SPI clock/MOSI/MISO are shared; LCD and touch have separate chip selects. The 5 V buzzer must draw no more than 20 mA for the proposed 2N3904/1k base drive. Its negative lead is switched by Q1; D1 cathode goes to +5 V and anode to the switched negative. Confirm E/B/C pinout from your transistor datasheet, not from package shape.
 
-Power the Pi only through the power micro-USB port, using a suitable 5 V supply. No battery, charger or charging circuit is included. Do not power the assembly via multiple supplies simultaneously.
+Power the Pi only through the power micro-USB port, using a suitable 5 V supply. The owner already has a 12V lithium-ion pack and LM2596 module. Keep both external to the rocket: no fitted battery/buck mounting or charging circuit is designed. Connect the battery to buck input with correct polarity; set and measure 5.0V before connecting the Pi, then verify stable output under the Pi/display load. Feed the regulated output through a suitable micro-USB power lead. Never connect 12V directly to the Pi. Use the battery manufacturer's matching charger; its exact capacity, protection and discharge rating remain unverified. Do not power the assembly via multiple supplies simultaneously.
 
 ## Install and run
 
@@ -87,3 +87,7 @@ From the repository root, run `.venv/bin/python firmware/preflight.py --hardware
 On the native SIM screen, tap the target label before ignition to cycle 1000/2500/5000 m. Tap the throttle bar, IGNITE, then PAUSE/RESUME as needed. Tap STAGE once to discard dry mass. A landed or completed flight requires RESET. Holding a finger on a button does not repeat it. Switching away from SIM freezes its physics. Run `lcd_client.py --port 8082` if your server uses a non-default port.
 
 This vertical model is educational and differs from the browser's two-axis model. Hardware frame timing limits its speed; it is not a real-time flight instrument. All controller, touch, power and mechanical checks still require the purchased hardware.
+
+## Minimum-cost assembly
+
+The final BOM sets buzzer, transistor, diode, both resistors and buzzer breadboard quantities to zero. Omit the entire buzzer branch (BZ1/Q1/D1/R1/R2); wire the Pi/display harness unchanged and keep `buzzer_enabled: false`. Do not bridge or improvise connections on the omitted branch. The full optional circuit remains in the schematic for future use. The five modes and on-screen alerts do not need it. No new screen or Pi model is substituted.
